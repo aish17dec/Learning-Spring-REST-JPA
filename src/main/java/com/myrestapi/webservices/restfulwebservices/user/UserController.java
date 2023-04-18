@@ -52,4 +52,9 @@ public class UserController {
         userDaoService.updateUser(Integer.parseInt(id), name,about,LocalDate.parse(birthday));
         return new ResponseEntity<String>("User updated!", HttpStatus.ACCEPTED);
     }
+    @PostMapping(path = "/signUp")
+    public ResponseEntity<String> signUp(@RequestBody UserCredentials signUpDetails){
+        userDaoService.signUpUser(signUpDetails);
+        return new ResponseEntity<>("User SignUp successful", HttpStatus.CREATED);
+    }
 }

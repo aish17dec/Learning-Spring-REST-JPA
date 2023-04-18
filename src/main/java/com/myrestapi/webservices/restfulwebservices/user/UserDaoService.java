@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -12,6 +13,9 @@ import java.util.NoSuchElementException;
 public class UserDaoService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserCredentialRepository userCredentialRepository;
 
 
     public List<User> getAllUsers(){
@@ -49,5 +53,11 @@ public class UserDaoService {
             user.setBirthday(birthday);
 
         userRepository.save(user);
+    }
+
+    public void signUpUser(UserCredentials userCredentials){
+        String encodedPassword = Base64.getEncoder().encodeToString(userCredentials.getPassword().getBytes());
+        userCredentials.setPassword(encodedPassword);
+        userCredentialRepository.save(userCredentials);
     }
 }

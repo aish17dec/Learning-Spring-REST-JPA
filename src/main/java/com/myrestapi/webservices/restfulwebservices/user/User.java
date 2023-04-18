@@ -1,10 +1,14 @@
 package com.myrestapi.webservices.restfulwebservices.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.myrestapi.webservices.restfulwebservices.userPost.UserPost;
 import org.hibernate.annotations.GeneratorType;
 import org.springframework.cglib.core.GeneratorStrategy;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity(name ="user_details")
 @Table(name = "USER_DETAILS")
 public class User {
@@ -15,15 +19,22 @@ public class User {
     private String about;
     private LocalDate birthday;
 
-//    public User(String name, int userId, String about, LocalDate birthday) {
+    //    public User(String name, int userId, String about, LocalDate birthday) {
 //        this.name = name;
 //        this.userId = userId;
 //        this.about = about;
 //        this.birthday = birthday;
 //    }
-//private List<Post> posts;
+    @OneToMany
+    private List<UserPost> posts;
 
+    public List<UserPost> getPosts() {
+        return posts;
+    }
 
+    public void setPosts(List<UserPost> posts) {
+        this.posts = posts;
+    }
     public String getName() {
         return name;
     }
