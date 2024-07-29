@@ -1,11 +1,11 @@
-package com.myrestapi.webservices.restfulwebservices.user;
+package com.myrestapi.webservices.restfulwebservices.controller;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class UserCredentials {
+public class UserCredentialsDto {
 
     @Id
     @GeneratedValue

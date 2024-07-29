@@ -1,5 +1,6 @@
-package com.myrestapi.webservices.restfulwebservices.user;
+package com.myrestapi.webservices.restfulwebservices.repository;
 
+import com.myrestapi.webservices.restfulwebservices.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

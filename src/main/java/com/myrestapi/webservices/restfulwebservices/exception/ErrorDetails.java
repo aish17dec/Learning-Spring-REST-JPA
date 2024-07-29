@@ -1,4 +1,4 @@
-package com.myrestapi.webservices.restfulwebservices.exceptionHandler;
+package com.myrestapi.webservices.restfulwebservices.exception;
 
 import java.time.LocalDateTime;
 

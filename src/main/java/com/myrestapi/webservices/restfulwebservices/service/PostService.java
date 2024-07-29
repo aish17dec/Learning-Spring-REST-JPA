@@ -1,10 +1,12 @@
-package com.myrestapi.webservices.restfulwebservices.userPost;
+package com.myrestapi.webservices.restfulwebservices.service;
 
+import com.myrestapi.webservices.restfulwebservices.repository.PostRepository;
+import com.myrestapi.webservices.restfulwebservices.repository.model.UserPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PostDaoService {
+public class PostService {
 
     @Autowired
     PostRepository postRepository;

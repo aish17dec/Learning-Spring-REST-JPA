@@ -1,8 +1,10 @@
-package com.myrestapi.webservices.restfulwebservices.userPost;
+package com.myrestapi.webservices.restfulwebservices.controller;
 
-import com.myrestapi.webservices.restfulwebservices.user.User;
-import com.myrestapi.webservices.restfulwebservices.user.UserDaoService;
-import com.myrestapi.webservices.restfulwebservices.user.UserNotFoundException;
+import com.myrestapi.webservices.restfulwebservices.repository.model.User;
+import com.myrestapi.webservices.restfulwebservices.repository.model.UserPost;
+import com.myrestapi.webservices.restfulwebservices.service.UserService;
+import com.myrestapi.webservices.restfulwebservices.exception.UserNotFoundException;
+import com.myrestapi.webservices.restfulwebservices.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,10 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    PostDaoService postDaoService;
+    PostService postDaoService;
 
     @Autowired
-    UserDaoService userDaoService;
+    UserService userDaoService;
 
     @PostMapping(path = "/users/{userId}/posts")
     public ResponseEntity<String> createPost(@PathVariable Integer userId, @RequestBody UserPost post){

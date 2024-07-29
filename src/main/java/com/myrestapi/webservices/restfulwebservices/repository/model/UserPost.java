@@ -1,7 +1,7 @@
-package com.myrestapi.webservices.restfulwebservices.userPost;
+package com.myrestapi.webservices.restfulwebservices.repository.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.myrestapi.webservices.restfulwebservices.user.User;
+import com.myrestapi.webservices.restfulwebservices.repository.model.User;
 
 import javax.persistence.*;
 

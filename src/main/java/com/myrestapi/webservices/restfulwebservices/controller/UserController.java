@@ -1,5 +1,8 @@
-package com.myrestapi.webservices.restfulwebservices.user;
+package com.myrestapi.webservices.restfulwebservices.controller;
 
+import com.myrestapi.webservices.restfulwebservices.repository.model.User;
+import com.myrestapi.webservices.restfulwebservices.service.UserService;
+import com.myrestapi.webservices.restfulwebservices.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +17,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserDaoService userDaoService;
+    UserService userDaoService;
 
     @GetMapping(path = "/users")
     public List<User> getAllUsers(){
@@ -53,7 +56,7 @@ public class UserController {
         return new ResponseEntity<String>("User updated!", HttpStatus.ACCEPTED);
     }
     @PostMapping(path = "/signUp")
-    public ResponseEntity<String> signUp(@RequestBody UserCredentials signUpDetails){
+    public ResponseEntity<String> signUp(@RequestBody UserCredentialsDto signUpDetails){
         userDaoService.signUpUser(signUpDetails);
         return new ResponseEntity<>("User SignUp successful", HttpStatus.CREATED);
     }

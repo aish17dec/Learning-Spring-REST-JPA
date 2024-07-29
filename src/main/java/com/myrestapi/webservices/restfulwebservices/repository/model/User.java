@@ -1,9 +1,4 @@
-package com.myrestapi.webservices.restfulwebservices.user;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.myrestapi.webservices.restfulwebservices.userPost.UserPost;
-import org.hibernate.annotations.GeneratorType;
-import org.springframework.cglib.core.GeneratorStrategy;
+package com.myrestapi.webservices.restfulwebservices.repository.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;

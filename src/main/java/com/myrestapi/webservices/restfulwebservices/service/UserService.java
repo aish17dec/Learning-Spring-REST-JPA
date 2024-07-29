@@ -1,16 +1,19 @@
-package com.myrestapi.webservices.restfulwebservices.user;
+package com.myrestapi.webservices.restfulwebservices.service;
 
+import com.myrestapi.webservices.restfulwebservices.controller.UserCredentialsDto;
+import com.myrestapi.webservices.restfulwebservices.repository.UserCredentialRepository;
+import com.myrestapi.webservices.restfulwebservices.repository.model.User;
+import com.myrestapi.webservices.restfulwebservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Repository
-public class UserDaoService {
+public class UserService {
     @Autowired
     UserRepository userRepository;
 
@@ -55,7 +58,7 @@ public class UserDaoService {
         userRepository.save(user);
     }
 
-    public void signUpUser(UserCredentials userCredentials){
+    public void signUpUser(UserCredentialsDto userCredentials){
         String encodedPassword = Base64.getEncoder().encodeToString(userCredentials.getPassword().getBytes());
         userCredentials.setPassword(encodedPassword);
         userCredentialRepository.save(userCredentials);
