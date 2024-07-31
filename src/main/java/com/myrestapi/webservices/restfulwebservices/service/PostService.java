@@ -1,34 +1,13 @@
 package com.myrestapi.webservices.restfulwebservices.service;
 
-import com.myrestapi.webservices.restfulwebservices.repository.PostRepository;
-import com.myrestapi.webservices.restfulwebservices.repository.model.UserPost;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.myrestapi.webservices.restfulwebservices.dto.PostDto;
 
-@Service
-public class PostService {
+public interface PostService {
+    void createPost(String userName, PostDto post);
 
-    @Autowired
-    PostRepository postRepository;
+    PostDto updatePost(PostDto userPost);
 
-    public void createPost(UserPost post) {
-        System.out.println(post.getUser());
-        postRepository.save(post);
-    }
+    void remove(String userName, String postId);
 
-    public UserPost getUserPost(int postId){
-        return postRepository.findById(postId).get();
-    }
-
-    public void deleteUserPost(int postId){
-        UserPost post = postRepository.findById(postId).get();
-        postRepository.delete(post);
-    }
-
-    public UserPost editPost(UserPost post){
-        UserPost original = postRepository.findById(post.getPostID()).get();
-        original.setDescription(post.getDescription());
-        postRepository.save(original);
-        return original;
-    }
+    PostDto getPost(String userName, String postId);
 }

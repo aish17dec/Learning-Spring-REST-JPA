@@ -1,66 +1,20 @@
 package com.myrestapi.webservices.restfulwebservices.service;
 
-import com.myrestapi.webservices.restfulwebservices.controller.UserCredentialsDto;
-import com.myrestapi.webservices.restfulwebservices.repository.UserCredentialRepository;
-import com.myrestapi.webservices.restfulwebservices.repository.model.User;
-import com.myrestapi.webservices.restfulwebservices.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import com.myrestapi.webservices.restfulwebservices.dto.PostDto;
+import com.myrestapi.webservices.restfulwebservices.dto.UpdateUserDto;
+import com.myrestapi.webservices.restfulwebservices.dto.UserDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.time.LocalDate;
-import java.util.Base64;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-@Repository
-public class UserService {
-    @Autowired
-    UserRepository userRepository;
+public interface UserService {
+    UserDetailsService userDetailsService();
 
-    @Autowired
-    UserCredentialRepository userCredentialRepository;
+    UserDto getUser(String userId);
 
+    boolean deleteUser(String id);
 
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
+    void updateUser(UpdateUserDto updateUserDto, String userName);
 
-    public User getUser(int userId){
-        try{
-            return userRepository.findById(userId).get();
-        }catch (NoSuchElementException e){
-            return null;
-        }
-    }
-
-    public void addUser(User user){
-        /*user.setUserId(UserDaoService.id);
-        UserDaoService.id++;
-        users.add(user);*/
-
-        userRepository.save(user);
-    }
-
-    public int deleteUser(int userId){
-        userRepository.deleteById(userId);
-        return userId;
-    }
-
-    public void updateUser(Integer id, String name, String about, LocalDate birthday) {
-        User user = userRepository.findById(id).get();
-        if(name!=null)
-            user.setName(name);
-        if(about!=null)
-            user.setAbout(about);
-        if(birthday!=null)
-            user.setBirthday(birthday);
-
-        userRepository.save(user);
-    }
-
-    public void signUpUser(UserCredentialsDto userCredentials){
-        String encodedPassword = Base64.getEncoder().encodeToString(userCredentials.getPassword().getBytes());
-        userCredentials.setPassword(encodedPassword);
-        userCredentialRepository.save(userCredentials);
-    }
+    List<PostDto> getAllPosts(String userName);
 }

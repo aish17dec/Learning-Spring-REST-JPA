@@ -1,0 +1,26 @@
+create table user (
+    id varchar(36) not null,
+    user_name varchar(36) not null,
+    first_name varchar(20) ,
+    last_name varchar(20) ,
+    about text,
+    created_at timestamp not null,
+    updated_at timestamp ,
+    birthday date,
+    emailId varchar(20),
+    website varchar(20),
+    pass_word varchar(20),
+
+    constraint user_pk PRIMARY KEY (id)
+)
+
+create table post(
+    id varchar(36) not null,
+    created_at timestamp not null,
+    updated_at timestamp ,
+    post_content text,
+    user_id varchar(36) not null,
+
+    constraint post_pk PRIMARY KEY (id),
+    constraint user_fk FOREIGN KEY (user_id) references user(id)
+)
