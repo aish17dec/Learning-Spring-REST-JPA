@@ -43,6 +43,7 @@ public class UserModel extends BaseModel implements UserDetails {
     private String password;
 
     @Column(name="role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")

@@ -2,13 +2,14 @@ package com.myrestapi.webservices.restfulwebservices.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class UserCredentialsDto {
+public class SignUpRequestDto {
     private String userName;
     private String password;
     private String emailId;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
-    private String country;
+    private Date dateOfBirth;
 }

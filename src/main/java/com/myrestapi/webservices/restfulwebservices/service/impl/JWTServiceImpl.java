@@ -48,12 +48,21 @@ public class JWTServiceImpl implements JWTService {
         byte[] key = Decoders.BASE64.decode("9f8a7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c");
         return Keys.hmacShaKeyFor(key);
     }
-
-    private String generateToken(UserDetails userDetails) {
+    @Override
+    public String generateToken(UserDetails userDetails) {
         String token = Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSignInKey()).compact();
         return token;
+    }
+
+    @Override
+    public String generateRefreshToken(UserDetails userDetails) {
+        String refreshToken = Jwts.builder().setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 7))
+                .signWith(getSignInKey()).compact();
+        return refreshToken;
     }
 }
