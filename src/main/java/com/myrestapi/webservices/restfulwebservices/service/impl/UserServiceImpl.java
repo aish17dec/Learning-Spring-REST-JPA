@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,7 @@ public class UserServiceImpl implements UserService {
             user.setEmailId(updateUser.getEmailId());
         if(updateUser.getWebsite()!=null)
             user.setWebsite(updateUser.getWebsite());
+        user.setUpdatedAt(new Date());
 
         userRepository.save(user);
     }

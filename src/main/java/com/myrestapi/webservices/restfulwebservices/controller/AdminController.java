@@ -17,7 +17,7 @@ import java.util.List;
 public class AdminController {
     private final UserService userService;
 
-    @GetMapping(path = "/allusers")
+    @GetMapping(path = "/all-users")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsersDetails(), HttpStatus.ACCEPTED);
     }

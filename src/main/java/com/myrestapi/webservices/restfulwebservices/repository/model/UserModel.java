@@ -78,4 +78,9 @@ public class UserModel extends BaseModel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @PrePersist
+    public void prePersist(){
+        this.setCreatedAt(new Date());
+    }
 }
